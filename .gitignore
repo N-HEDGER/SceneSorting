@@ -1,5 +1,5 @@
 # Ignore everything
-*
+/*
 
 # But not these files...
 !.gitignore
@@ -9,4 +9,4 @@
 !find_groups.m
 !ImageSortingSS.m
 !ImageSortingSSBASE.m
-!/*
+!*/
