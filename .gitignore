@@ -2,7 +2,7 @@
 *
 
 # But not these files...
-!.gitignore
+! .gitignore
 ! draw_all_images.m
 ! draw_buttons.m
 ! draw_labels.m
