@@ -3,10 +3,10 @@
 
 # But not these files...
 !.gitignore
-!draw_all_images.m
-!draw_buttons.m
-!draw_labels.m
-!find_groups.m
-!ImageSortingSS.m
-!ImageSortingSSBASE.m
-!*/
+! draw_all_images.m
+! draw_buttons.m
+! draw_labels.m
+! find_groups.m
+! ImageSortingSS.m
+! ImageSortingSSBASE.m
+! */
