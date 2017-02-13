@@ -4,6 +4,8 @@
 %%% BUT images are flipped as read in
 %%% coordinates of destination rects are flipped at drawing
 
+
+
 close all;
 clear all;
 
@@ -18,13 +20,16 @@ LABELLING = 3;
 MIN_GROUPS = 5;
 MAX_GROUPS = 10;
 
-
 CURRENT_TASK=SORTING;
 
 %%%% find subject's name
 subject = input('subject name: ', 's');
 
 datafilename=strcat('Data/Sorting_', subject);
+datafilenamepic=strcat(datafilename,'.jpg');
+
+log_text=sprintf('Data/%s_log.txt',subject);
+log_text_fid=fopen(log_text,'a+');
 
 if(exist(strcat(datafilename, '.mat'), 'file'))
     fprintf('Your datafile already exists\n');
@@ -152,6 +157,17 @@ LEFT_BUTTON = RELEASED;
 
 LAST_SELECTED = NaN;
 SELECTED = NaN;
+
+
+
+current_time=GetSecs;
+log_txt=sprintf('Experimental loop begin at %f',current_time);
+fprintf(log_text_fid,'%s\n',log_txt);
+log_txt=sprintf('Experimental loop begin at %s',num2str(clock));
+fprintf(log_text_fid,'%s\n',log_txt);
+formatSpecQuit=('Subject quitted at: %s');
+
+
 while(GetSecs - start_time<60*10)  % max time sorting
     
     %%% check for key presses
@@ -159,8 +175,10 @@ while(GetSecs - start_time<60*10)  % max time sorting
     [~, ~, keyCode] = KbCheck;
     
     if keyCode(KbName('ESCAPE')) % escape
-        %ShowCursor(window);
-        %ListenChar(0); % reinstate keyboard input to windows
+        imageArray = Screen('GetImage', WINDOW_INDEX);
+        imwrite (imageArray,datafilenamepic);
+        log_txt=sprintf(formatSpecQuit,num2str(clock));
+        fprintf(log_text_fid,'%s\n',log_txt);
         Screen('CloseAll');
         return;
     end;
